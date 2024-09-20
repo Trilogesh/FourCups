@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Cups Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .color-btn {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .color-btn:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        #luck {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Four_Cup$ Game (❛ ᴗ ❛)</h1>
+
+    <p>Select a color:</p>
+    <button class="color-btn" onclick="chooseColor('red')">Red</button>
+    <button class="color-btn" onclick="chooseColor('blue')">Blue</button>
+    <button class="color-btn" onclick="chooseColor('yellow')">Yellow</button>
+    <button class="color-btn" onclick="chooseColor('green')">Green</button>
+
+    <div id="result"></div>
+    <div id="luck"></div>
+
+    <script>
+        const luckList = ['Superman', 'Spiderman', 'Bheem', 'Motu', 'Jon', 'Ben10', 'Barbie', 'Elsa'];
+
+        function getRandomNumbers() {
+            let numbers = [];
+            while (numbers.length < 4) {
+                let num = Math.floor(Math.random() * 8) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers;
+        }
+
+        function chooseColor(color) {
+            const validColors = ['red', 'blue', 'yellow', 'green'];
+            if (!validColors.includes(color.toLowerCase())) {
+                alert('Please enter a valid color');
+                return;
+            }
+
+            let numbers = getRandomNumbers();
+            document.getElementById('result').innerHTML = `<p>Generated numbers: ${numbers.join(', ')}</p>`;
+            
+            let userNum = prompt('Enter any number from the above list:');
+            userNum = parseInt(userNum);
+
+            if (numbers.includes(userNum)) {
+                let luckIndex = Math.floor(Math.random() * luckList.length);
+                document.getElementById('luck').innerText = `Your luck is: ${luckList[luckIndex]}`;
+            } else {
+                alert('Number not found, try again!');
+            }
+        }
+    </script>
+
+    <p>(★‿★) ...Thank you, visit again... (✿◠‿◠)</p>
+
+</body>
+</html>
